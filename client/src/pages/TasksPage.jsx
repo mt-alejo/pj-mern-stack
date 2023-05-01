@@ -1,5 +1,16 @@
+import { getAllTasksRequest } from "../api/tasks.api";
+import { useEffect } from "react";
+
 function TasksPage() {
-  return <h1> Task Page</h1>;
+  useEffect(() => {
+    const loadTasks = async () => {
+      const response = await getAllTasksRequest();
+      console.log(response);
+    };
+    loadTasks();
+  }, []);
+
+  return <h1>Tasks</h1>;
 }
 
 export default TasksPage;
