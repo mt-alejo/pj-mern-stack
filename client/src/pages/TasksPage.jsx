@@ -24,6 +24,10 @@ function TasksPage() {
           <div key={task.id}>
             <h1>{task.title}</h1>
             <p>{task.description}</p>
+            <span>{task.done === 1 ? "✅" : "❌"}</span>
+            <i>{task.createdAt}</i>
+            <button>Delete</button>
+            <button>Edit</button>
           </div>
         );
       })}
