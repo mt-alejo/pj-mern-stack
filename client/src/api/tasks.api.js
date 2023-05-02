@@ -5,3 +5,7 @@ export const createTaskRequest = async (task) =>
 
 export const getAllTasksRequest = async () =>
   axios.get("http://localhost:4000/tasks");
+
+export const deleteTaskRequest = async (task) => {
+  axios.delete("http://localhost:4000/tasks", task);
+};
