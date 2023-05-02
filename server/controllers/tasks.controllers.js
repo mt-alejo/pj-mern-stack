@@ -25,15 +25,16 @@ export const getTask = async (req, res) => {
 };
 export const createTask = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, done } = req.body;
     const [result] = await pool.query(
-      "INSERT INTO tasks(title, description) VALUEs  (?, ?)",
-      [title, description]
+      "INSERT INTO tasks(title, description, done) VALUEs  (?, ?, ?)",
+      [title, description, done]
     );
     res.json({
       id: result.insertId,
       title,
       description,
+      done,
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
