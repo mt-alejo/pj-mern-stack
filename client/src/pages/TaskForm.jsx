@@ -1,5 +1,7 @@
 import { Formik, Form } from "formik";
-import { createTaskRequest } from "../api/tasks.api";
+import { v4 as uuidv4 } from "uuid";
+import { handleLocalStorage } from "../hooks/useLocalStorage";
+// import { createTaskRequest } from "../api/tasks.api";
 
 function TaskForm() {
   return (
@@ -9,14 +11,17 @@ function TaskForm() {
         description: "",
       }}
       onSubmit={async (values, actions) => {
-        console.log(values);
-        try {
-          const response = await createTaskRequest(values);
-          console.log(response);
-          actions.resetForm();
-        } catch (error) {
-          console.log(error);
-        }
+        (values.done = false), (values.id = uuidv4()), console.log(values);
+        actions.resetForm();
+        // handleLocalStorage("add", );
+
+        // try {
+        //   const response = await createTaskRequest(values);
+        //   console.log(response);
+        //   actions.resetForm();
+        // } catch (error) {
+        //   console.log(error);
+        // }
       }}
     >
       {({ handleChange, handleSubmit, values, isSubmitting }) => (
