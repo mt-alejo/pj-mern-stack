@@ -1,8 +1,9 @@
-/* eslint-disable react/prop-types */
-import { deleteTaskRequest } from "../api/tasks.api";
-function TaskCard({ task }) {
+// import { deleteTaskRequest } from "../api/tasks.api";
+import { deleteLocalStorage } from "../hooks/useLocalStorage";
+function TaskCard({ task, id }) {
   function handleDelete(id) {
-    deleteTaskRequest(id);
+    // deleteTaskRequest(id);
+    deleteLocalStorage(id);
   }
   return (
     <div>
@@ -10,7 +11,7 @@ function TaskCard({ task }) {
       <p>{task.description}</p>
       <span>{task.done === 1 ? "✅" : "❌"}</span>
       <i>{task.createdAt}</i>
-      <button onClick={() => handleDelete(task.id)}>Delete</button>
+      <button onClick={() => handleDelete(id)}>Delete</button>
       <button>Edit</button>
     </div>
   );
