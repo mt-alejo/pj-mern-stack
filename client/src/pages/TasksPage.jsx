@@ -1,40 +1,22 @@
 // import { getAllTasksRequest } from "../api/tasks.api";
 // import { useEffect, useState } from "react";
 
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import TaskCard from "../components/TaskCard";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { v4 as uuidv4 } from "uuid";
+import { TaskContext } from "../context/TaskContext";
 
 function TasksPage() {
-  const [tasks, setTasks] = useState([]);
-  // useEffect(() => {
-  //   async function loadTasks() {
-  //     const response = await getAllTasksRequest();
-  //     setTasks(response.data);
-  //   }
-  //   loadTasks();
-  // }, []);
-  const response = useLocalStorage("TASKER");
-  useEffect(() => {
-    setTasks(response);
-  }, []);
+  const { tasks } = useContext(TaskContext);
   //Add the key value property:e
   tasks.map((task) => (task.id = uuidv4()));
+
   return (
     <div>
       <h1>Tasks</h1>
       {tasks?.map((task) => {
         //The key must to be {key.id}
-        return (
-          <TaskCard
-            key={task.id}
-            id={task.id}
-            tasks={tasks}
-            setTasks={setTasks}
-            task={task}
-          />
-        );
+        return <TaskCard key={task.id} task={task} />;
       })}
     </div>
   );

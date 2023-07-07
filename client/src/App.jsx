@@ -4,7 +4,6 @@ import TaskForm from "./pages/TaskForm.jsx";
 import "./App.css";
 
 import Navbar from "./components/Navbar.jsx";
-
 function App() {
   return (
     <>

@@ -1,9 +1,12 @@
 import { Formik, Form } from "formik";
 import { v4 as uuidv4 } from "uuid";
 import { handleLocalStorage } from "../hooks/useLocalStorage";
+import { useContext } from "react";
+import { TaskContext } from "../context/TaskContext";
 // import { createTaskRequest } from "../api/tasks.api";
 
 function TaskForm() {
+  const { tasks, setTasks } = useContext(TaskContext);
   return (
     <Formik
       initialValues={{
@@ -11,9 +14,9 @@ function TaskForm() {
         description: "",
       }}
       onSubmit={async (values, actions) => {
-        (values.done = false), (values.id = uuidv4()), console.log(values);
+        (values.done = false), (values.id = uuidv4());
         actions.resetForm();
-        // handleLocalStorage("add", );
+        handleLocalStorage("add", values, tasks, setTasks);
 
         // try {
         //   const response = await createTaskRequest(values);

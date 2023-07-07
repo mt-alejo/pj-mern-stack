@@ -19,11 +19,21 @@ function handleLocalStorage(action, id, tasks, setTasks) {
     setTasks(newArray);
     console.log(newArray[indexTask].done);
   }
+
+  function addLocalStorage() {
+    const newArray = [...tasks, id];
+    localStorage.setItem("TASKER", JSON.stringify(newArray));
+    setTasks(newArray);
+    console.log(JSON.stringify(newArray));
+  }
   if (action === "delete") {
     return deleteLocalStorage();
   }
   if (action === "toggle") {
     return toggleLocalStorage();
+  }
+  if (action === "add") {
+    return addLocalStorage();
   }
 }
 
